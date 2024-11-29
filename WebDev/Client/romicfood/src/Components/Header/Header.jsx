@@ -3,9 +3,6 @@ import './header.css';
 import {NavLink} from "react-router-dom";
 
 function Header({isAuth}) {
-
-    console.log(isAuth);
-
     return (
         <header>
             <nav>
