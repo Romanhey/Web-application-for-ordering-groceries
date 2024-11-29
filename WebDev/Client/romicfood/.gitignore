@@ -21,8 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/.gitignore
-/.idea/modules.xml
-/.idea/romicfood.iml
-/.idea/vcs.xml
