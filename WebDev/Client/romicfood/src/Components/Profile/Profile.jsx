@@ -1,7 +1,7 @@
 import React from "react";
 import "./profile.css"; // Подключаем стили
 
-export const Profile = () => {
+export const Profile = ({user}) => {
     return (
         <div className="profile-page">
             {/* Заголовок страницы */}
@@ -14,7 +14,7 @@ export const Profile = () => {
             <div className="profile-main-info">
                 <div className="info-row">
                     <span className="info-label">Полное имя:</span>
-                    <span className="info-value">Иван Иванов</span>
+                    <span className="info-value">{user.fullName}</span>
                 </div>
                 <div className="info-row">
                     <span className="info-label">Email:</span>

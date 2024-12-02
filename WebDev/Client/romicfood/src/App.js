@@ -22,9 +22,9 @@ function App() {
 
 
         <Routes>
-            <Route path="/" element={<Header isAuth={user?.id == null}/>} />
+            <Route path="/" element={<Header isAuth={user?.id !== null}/>} />
             <Route path="/auth" element={<Auth setUser={setUser}/>} />
-            <Route path={"/profile"} element={< Profile />} />
+            <Route path={"/profile"} element={< Profile user={user}/>} />
         </Routes>
 
     </div>
