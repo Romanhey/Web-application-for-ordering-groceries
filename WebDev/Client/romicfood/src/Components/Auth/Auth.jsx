@@ -1,7 +1,10 @@
 import React from 'react';
 import './auth.css';
 import {ENV} from "../../Share/share";
-function Auth(props) {
+import {NavLink, useNavigate} from "react-router-dom";
+function Auth({setUser}) {
+
+    const navigaion = useNavigate();
 
     const [isRegister, setIsRegister] = React.useState(false);
     const [isSecondRegisterPage, setIsSecondRegisterPage] = React.useState(false);
@@ -30,14 +33,17 @@ function Auth(props) {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    login: login,
-                    password: password
+                    "login": login,
+                    "password": password
                 })
             }).then(res => res.json())
                 .then(data => {
                     console.log(data);
                     if (data.error) {
-                        alert(data.error);
+                        console.log(data.error);
+                    }else{
+                        setUser(data.user);
+                        navigaion("/");
                     }
                 });
         } catch (e) {
@@ -48,24 +54,27 @@ function Auth(props) {
 
     let Register = async () => {
 
+        console.log("start reg")
         if (registerPassword !== registerRepeatPassword) {
             alert("Пароли не совпадают");
             return
         }
 
+
         try {
-            await fetch(`${ENV.BASE_URL}/auth/register`, {
-                method: "POST",
+            var data = {
+                "fullName": registerName,
+                "email": registerEmail,
+                "login": registerLogin,
+                "password": registerPassword,
+                "address": registerAddres
+            }
+            await fetch(`${ENV.BASE_URL}/user/register`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    name: registerName,
-                    email: registerEmail,
-                    addres: registerAddres,
-                    login: registerLogin,
-                    password: registerPassword,
-                })
+                body: JSON.stringify(data)
             }).then(res => res.json())
                 .then(data => {
                     if (data.error) {
@@ -75,7 +84,7 @@ function Auth(props) {
                     }
                 });
         } catch (e) {
-            alert(e);
+            console.log(e);
         }
     }
 
@@ -85,9 +94,21 @@ function Auth(props) {
                 <h1>Вход</h1>
                 <div className="login_form_inputs">
                     <label htmlFor="email">Логин</label>
-                    <input type="text" id="email" placeholder="логин"/>
+                    <input
+                        type="text"
+                        id="email"
+                        placeholder="логин"
+                        value={login}
+                        onChange={(e) => setLogin(e.target.value)}
+                    />
                     <label htmlFor="password">Пароль</label>
-                    <input type="password" id="password" placeholder="пароль"/>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="пароль"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
                 <div className="login_form_buttons">
                     <button
@@ -108,20 +129,52 @@ function Auth(props) {
                         id="register_email"
                         placeholder="name@email.com"
                         disabled={isSecondRegisterPage}
+                        onChange={(e) => setRegisterEmail(e.target.value)}
+                        value={registerEmail}
                     />
 
 
                     <div className="inp2">
                         <label htmlFor="register_login">Логин</label>
-                        <input type="text" id="register_login" placeholder="логин"/>
+                        <input
+                            type="text"
+                            id="register_login"
+                            placeholder="логин"
+                            onChange={(e) => setRegisterLogin(e.target.value)}
+                            value={registerLogin}
+                        />
                         <label htmlFor="register_name">Имя</label>
-                        <input type="text" id="register_name" placeholder="имя"/>
+                        <input
+                            type="text"
+                            id="register_name"
+                            placeholder="имя"
+                            onChange={(e) => setRegisterName(e.target.value)}
+                            value={registerName}
+                        />
                         <label htmlFor="register_addres">Адрес</label>
-                        <input type="text" id="register_addres" placeholder="адрес"/>
+                        <input
+                            type="text"
+                            id="register_addres"
+                            placeholder="адрес"
+                            onChange={(e) => setRegisterAddres(e.target.value)}
+                            value={registerAddres}
+                        />
                         <label htmlFor="register_password">Пароль</label>
-                        <input type="password" id="register_password" placeholder="пароль"/>
+                        <input
+                            type="password"
+                            id="register_password"
+                            placeholder="пароль"
+                            onChange={(e) => setRegisterPassword(e.target.value)}
+                            value={registerPassword}
+                        />
                         <label htmlFor="register_repeatpassword">Подтверждение пароля</label>
-                        <input type="password" id="register_repeatpassword" placeholder="пароль"/>
+                        <input
+                            type="password"
+                            id="register_repeatpassword"
+                            placeholder="пароль"
+                            onChange={(e) => setRegisterRepeatPassword(e.target.value)}
+                            value={registerRepeatPassword}
+                        />
                     </div>
                 </div>
                 <div className="register_form_buttons">
@@ -133,7 +186,10 @@ function Auth(props) {
                         id="register_button"
                         onClick={() => Register()}
                     >Зарегистрироваться</button>
-                    <p>Уже зарегистрированы? <a id="login_sw_button">Войти</a></p>
+                    <p>Уже зарегистрированы? <a onClick={()=>{
+                        setIsRegister(false)
+                        setIsSecondRegisterPage(false)
+                    }} id="login_sw_button">Войти</a></p>
                 </div>
             </div>
 

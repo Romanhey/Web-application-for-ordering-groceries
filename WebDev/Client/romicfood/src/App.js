@@ -6,17 +6,24 @@ import {useState} from "react";
 import {Profile} from "./Components/Profile/Profile";
 
 function App() {
-    const [user, setUser] = useState(true);
+    const [user, setUser] = useState({
+        id: null,
+        login: null,
+        name: null,
+        email: null,
+        address: null
+    });
+
+
 
 
   return (
     <div className="App">
-        <Header isAuth={user}/>
 
 
         <Routes>
-
-            <Route path="/auth" element={<Auth />} />
+            <Route path="/" element={<Header isAuth={user?.id == null}/>} />
+            <Route path="/auth" element={<Auth setUser={setUser}/>} />
             <Route path={"/profile"} element={< Profile />} />
         </Routes>
 
