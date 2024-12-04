@@ -5,10 +5,10 @@ import { FiShoppingCart, FiTruck } from "react-icons/fi"; // Добавляем 
 import { TbTruckDelivery } from "react-icons/tb";
 
 function Header({ isAuth }) {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
@@ -16,13 +16,14 @@ function Header({ isAuth }) {
             <nav>
                 <div className="nav_logo">
                     <TbTruckDelivery /> {/* Используем иконку FiTruck для логотипа */}
+                    <span className="company_name">RomicFood</span> {/* Название компании */}
                 </div>
                 <div className="navigation">
                 <div className="nav_search">
                     <input type="text" placeholder="Search"/>
                     <img src={`${process.env.PUBLIC_URL}/img/icons-reach.svg`} alt="search icon"/>
                 </div>
-                    <div className={`nav_buttons ${menuOpen ? 'open' : ''}`}>
+                    <div className={`nav_buttons ${isMenuOpen ? 'open' : ''}`}>
                         <a href="">Сообщество</a>
                         <a href="">Ресурсы</a>
                         <a href="">Контакты</a>
@@ -50,10 +51,8 @@ function Header({ isAuth }) {
                     </div>
                 </div>
 
-                <div className="burger-menu" onClick={toggleMenu}>
-                    <div className="burger-icon"></div>
-                    <div className="burger-icon"></div>
-                    <div className="burger-icon"></div>
+                <div className={["burger-menu",isMenuOpen ? "active" : ""].join(" ")} onClick={toggleMenu}>
+                    <span className="burger-icon"></span>
                 </div>
             </nav>
             <div className="header_content">

@@ -71,12 +71,26 @@ function CardList({}) {
         }
     ]
 
-
+    const categories = ["All", "Pizza", "Burgers", "Sushi"];
     return (
-        <div className="products-list">
-            {products.map((product) => (
-                <Card product={product} key={product.productId}/>
-            ))}
+        <div className="page-container">
+            <h1 className="menu-title">Меню</h1>
+            <div className="menu-quote">
+                <span>“Cibus est vita.”</span>
+                <span className="translation">(Еда — это жизнь.)</span>
+            </div>
+            <div className="categories">
+                {categories.map((category, index) => (
+                    <button className="category-button" key={index}>
+                        {category}
+                    </button>
+                ))}
+            </div>
+            <div className="products-list">
+                {products.map((product,index ) => (
+                    <Card product={product} key={index} />
+                ))}
+            </div>
         </div>
     );
 }

@@ -18,15 +18,15 @@ export const Profile = ({user}) => {
                 </div>
                 <div className="info-row">
                     <span className="info-label">Email:</span>
-                    <span className="info-value">ivan.ivanov@email.com</span>
+                    <span className="info-value">{user.email}</span>
                 </div>
                 <div className="info-row">
                     <span className="info-label">Адрес:</span>
-                    <span className="info-value">ул. Пушкина, д. Колотушкина</span>
+                    <span className="info-value">{user.address}</span>
                 </div>
                 <div className="info-row">
                     <span className="info-label">Логин:</span>
-                    <span className="info-value">ivan123</span>
+                    <span className="info-value">{user.login}</span>
                 </div>
             </div>
             {/* Секция "Мои заказы" */}

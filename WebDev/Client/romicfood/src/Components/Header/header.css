@@ -2,6 +2,9 @@
 header {
     width: 100%;
     height: 100vh;
+    /*
+    position: fixed;
+    */
 }
 
 nav {
@@ -13,9 +16,11 @@ nav {
     align-items: center;
     justify-content: space-between;
     color: var(--gray);
-    position: relative;
+    position: fixed;
     padding: 0 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 nav a {
     margin: 0 8px;
@@ -26,8 +31,16 @@ nav a {
     display: flex;
     position: relative;
     font-size: 50px;
+    align-items: center; /* Выравнивание логотипа и названия компании по вертикали */
+    color: var(--gray); /* Пример цвета для логотипа и текста */
 }
-
+.nav_logo .company_name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: calc(var(--index)*1.2); /* Размер шрифта для названия компании */
+    font-weight: bold; /* Жирный шрифт для названия */
+    margin-left: 10px; /* Отступ между логотипом и названием компании */
+    color: var(--gray); /* Цвет текста названия */
+}
 .navigation{
     display: flex;
     flex-flow: row nowrap;
@@ -39,7 +52,7 @@ nav a {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .nav_search {
@@ -47,28 +60,28 @@ nav a {
 }
 
 .nav_search input {
-    width: 320px;
+    width: 350px;
     height: 35px;
     border: 1px solid var(--gray);
     border-radius: 50px;
     padding: 12px 16px;
-    margin: 0 8px;
+    margin: 0;
 }
 
 .nav_search img {
     width: 18px;
-    right: 16px;
+    right: 0px;
     top: 50%;
-    transform: translateY(-50%) rotate(10deg);
+    transform: translate(-50%, -50%) rotate(10deg);
     position: absolute;
 }
 
 /* Адаптивное изображение на фоне */
 .header_content {
     width: 100%;
-    height: calc(100vh - 60px);
+    height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../../public/img/5272338.jpg") no-repeat center  center;
+    url("../../../public/img/pexels-chanwalrus-958545.jpg") no-repeat center  center;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -111,32 +124,100 @@ nav a {
 /* Бургер-меню */
 .burger-menu {
     display: none;
+    --size: 3px; /* Толщина линий */
+    position: absolute; /* Оставляем абсолютное позиционирование */
+    right: 20px; /* Смещаем вправо на 20px */
+    width: 40px; /* Ширина иконки-бургера */
+    height: 24px; /* Высота иконки-бургера */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+.burger-menu::before,
+.burger-menu::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: var(--size); /* Толщина линий */
+    background-color: var(--gray); /* Цвет линий */
+    border-radius: 3px; /* Скругление углов линий */
+    transition: 0.3s ease; /* Плавный переход при анимации */
+}
+
+.burger-menu::before {
+    top: 0; /* Верхняя линия */
+}
+
+.burger-menu::after {
+    bottom: 0; /* Нижняя линия */
+}
+
+.burger-menu span {
     position: absolute;
     top: 50%;
-    right: 20px;
-    transform: translateY(-50%); /* Центрирование по высоте */
-    flex-direction: column;
-    justify-content: space-between;
-    height: 22px;
-    width: 30px;
-    cursor: pointer;
+    left: 0;
+    width: 100%;
+    height: var(--size); /* Толщина линий */
+    background-color: var(--gray); /* Цвет линий */
+    border-radius: 3px; /* Скругление углов линий */
+    transition: 0.3s ease; /* Плавный переход */
+    transform: translateY(-50%); /* Центрируем по вертикали */
+}
+
+.burger-menu.active::before {
+    top: 50%; /* Центрируем верхнюю линию */
+    transform: translateY(-50%) rotate(-45deg); /* Поворачиваем верхнюю линию */
+}
+
+.burger-menu.active::after {
+    top: 50%; /* Центрируем нижнюю линию */
+    transform: translateY(-50%) rotate(45deg); /* Поворачиваем нижнюю линию */
+}
+
+.burger-menu.active span {
+    opacity: 0; /* Скрываем среднюю линию */
 }
 
 .burger-icon {
+    position: absolute;
     background-color: #333;
-    height: 4px;
+    height: var(--size);
     width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+
 }
 
 .nav_buttons.open {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для меню */
+    border-top: 2px solid #eaeaea; /* Разделение сверху */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Расположить кнопки в столбик */
+    align-items: flex-start; /* Выравнивание по левому краю */
     position: absolute;
-    top: 60px;
+    top: 40px; /* Расстояние от верхней границы под навигационной панелью */
     right: 0;
-    background-color: var(--white);
-    width: 100%;
+    background-color: var(--white); /* Белый фон */
+    width: 100%; /* Полная ширина */
     padding: 20px;
+    z-index: 10; /* Убедитесь, что меню на переднем плане */
+}
+
+.nav_buttons.open a {
+    display: block; /* Кнопки занимают всю ширину строки */
+    margin:6px 0; /* Отступ между кнопками */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 14px; /* Размер шрифта */
+    color: var(--gray); /* Цвет текста */
+    padding: 6px; /* Внутренние отступы для кнопок */
+    border-radius: 4px; /* Сглаженные углы */
+    transition: background-color 0.3s ease; /* Анимация при наведении */
+}
+
+.nav_buttons.open a:hover {
+    background-color: var(--gray); /* Акцентный цвет при наведении */
+    color: #ffffff; /* Белый текст */
 }
 
 .cart-icon {
@@ -153,10 +234,10 @@ nav a {
 #sign_in_button {
     background-color: transparent;
     border: 2px solid var(--gray);
-    padding: 8px 16px;
-    border-radius: 12px;
+    padding: 7px 14px;
+    border-radius: 8px;
     margin-right: 10px;
-    font-size: 16px;
+    font-size: 12px;
     display: none;
 }
 
@@ -177,9 +258,53 @@ nav a {
 #profile_button.active {
     display: block;
 }
+@media (max-width: 1024px){
 
+    .nav_buttons.open {
+        top: 45px;
+    }
+    .cart-icon {
+        font-size: 1.5em;
+        display: flex;
+        position: relative;
+        right: 40px;
+        /* Располагаем корзину левее бургер-меню */
+    }
+    .nav_search {
+        position: absolute;
+        left: 50%; /* Откорректируем позицию поиска */
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .navigation{
+        display: flex;
+    }
+    .nav_buttons {
+        display: none; /* Скрываем кнопки на мобильных */
+    }
+    .burger-menu {
+        border-radius: 3px;
+        display: block;
+        width: 20px;
+        height: 16px;
+    }
+    .burger-icon {
+        height: 3px;
+        border-radius: 2px;
+    }
+
+    .nav_buttons.open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 /* Медиа запросы для мобильных устройств */
 @media (max-width: 768px) {
+
+    .nav_logo .company_name{
+        display: none;
+    }
     nav {
         height: 40px; /* Снижаем высоту навигационной панели */
         padding: 0 10px;
@@ -197,23 +322,27 @@ nav a {
         height: 30px;
         width: 200px;
         font-size: 12px;
-        padding: 8px 10px; /* Уменьшаем отступы для компактности */
+        padding: 8px 16px; /* Уменьшаем отступы для компактности */
     }
     .nav_search img {
         width: 16px; /* Уменьшаем размер иконки поиска */
         top: 50%;
-        transform: translateY(-50%) rotate(10deg);
     }
     .nav_buttons {
         display: none; /* Скрываем кнопки на мобильных */
     }
+    .nav_buttons.open {
+        top: 40px;
+    }
     .burger-menu {
-        display: flex;
-        height: 20px;
-        padding: 1px;
+        border-radius: 3px;
+        display: block;
+        width: 20px;
+        height: 16px;
     }
     .burger-icon {
         height: 3px;
+        border-radius: 2px;
     }
 
     .nav_buttons.open {
@@ -221,7 +350,9 @@ nav a {
         flex-direction: column;
         align-items: flex-start;
     }
-
+    .header_content{
+        height: 100vh;
+    }
     .header_content_text h1 {
         font-size: 30px;
     }
@@ -237,9 +368,10 @@ nav a {
     }
     .cart-icon {
         font-size: 1.5em;
-        position: fixed;
-        top: 9px;
-        right: 60px; /* Располагаем корзину левее бургер-меню */
+        display: flex;
+        position: relative;
+        right: 40px;
+        /* Располагаем корзину левее бургер-меню */
     }
 }
 
@@ -258,7 +390,9 @@ nav a {
     }
 
     .nav_search {
-        height: 30px;
+        align-items: center;
+        display: flex;
+        height: 26px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -271,6 +405,7 @@ nav a {
     }
 
     .nav_search img {
+        align-items: center;
         width: 14px; /* Уменьшаем иконку еще больше */
         right: 18px;
         top: 14px;
@@ -279,12 +414,22 @@ nav a {
 
     .burger-menu {
         right: 10px;
-        width: 20px; /* Уменьшаем размер бургер-меню */
-        height: 14px; /* Уменьшаем высоту бургер-меню */
+        width: 20px;
+        height: 22px; /* Уменьшаем высоту бургер-меню */
     }
 
+
+
     .burger-icon {
-        height: 3px; /* Уменьшаем толщину линии бургер-меню */
+        width: 100%;
+        background-color: #333;
+        height: var(--size);
+        border-radius: 1px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .header_content{
+        height: 100vh;
     }
 
     .header_content_text h1 {
@@ -302,9 +447,9 @@ nav a {
     }
 
     .cart-icon {
-        right: 38px;
+        right: 40px;
         font-size: 1.4em;
-        top: 8px;
+        display: flex;
     }
 
     .nav_profile {
