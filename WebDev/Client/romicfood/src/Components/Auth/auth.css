@@ -24,8 +24,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 520px;
-    height: 500px;
+    width: calc(var(--index)*25);
+    height: calc(var(--index)*22);
     background-color: var(--white);
     border-radius: 20px;
     box-shadow: 0 32px 64px -12px #2d3643;
