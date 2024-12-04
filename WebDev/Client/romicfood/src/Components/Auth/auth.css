@@ -38,13 +38,6 @@
     z-index: -1;
     transition: .3s ease;
 }
-@media (max-width: 480px) {
-    .login_Form{
-        width: 310px;
-        height: 500px;
-    }
-}
-
 
 .login_Form.active{
     opacity: 1;
