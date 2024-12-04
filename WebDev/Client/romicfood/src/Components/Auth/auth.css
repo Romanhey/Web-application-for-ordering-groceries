@@ -65,7 +65,7 @@
 }
 
 .login_form_inputs input{
-    width: 100%;
+    width: 380px;
     height: 56px;
     border: 1px solid var(--gray);
     border-radius: 12px;
