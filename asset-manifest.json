@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Web-application-for-ordering-groceries/static/css/main.ad5b92d3.css",
-    "main.js": "/Web-application-for-ordering-groceries/static/js/main.103e3e6a.js",
-    "static/media/pexels-pixabay-326333.jpg": "/Web-application-for-ordering-groceries/static/media/pexels-pixabay-326333.ee7140d7526eababf903.jpg",
-    "static/media/pexels-fwstudio-33348-164005.jpg": "/Web-application-for-ordering-groceries/static/media/pexels-fwstudio-33348-164005.825190cd9083679b7d8a.jpg",
-    "static/media/pexels-chanwalrus-958545.jpg": "/Web-application-for-ordering-groceries/static/media/pexels-chanwalrus-958545.ae88a0704b6edbb258b4.jpg",
-    "index.html": "/Web-application-for-ordering-groceries/index.html",
-    "main.ad5b92d3.css.map": "/Web-application-for-ordering-groceries/static/css/main.ad5b92d3.css.map",
-    "main.103e3e6a.js.map": "/Web-application-for-ordering-groceries/static/js/main.103e3e6a.js.map"
+    "main.css": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/css/main.38a644f7.css",
+    "main.js": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/js/main.75ae52fa.js",
+    "static/media/pexels-pixabay-326333.jpg": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/media/pexels-pixabay-326333.ee7140d7526eababf903.jpg",
+    "static/media/pexels-fwstudio-33348-164005.jpg": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/media/pexels-fwstudio-33348-164005.825190cd9083679b7d8a.jpg",
+    "static/media/pexels-chanwalrus-958545.jpg": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/media/pexels-chanwalrus-958545.ae88a0704b6edbb258b4.jpg",
+    "index.html": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/index.html",
+    "main.38a644f7.css.map": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/css/main.38a644f7.css.map",
+    "main.75ae52fa.js.map": "/Web-application-for-ordering-groceries/WebDev/Client/romicfood/static/js/main.75ae52fa.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad5b92d3.css",
-    "static/js/main.103e3e6a.js"
+    "static/css/main.38a644f7.css",
+    "static/js/main.75ae52fa.js"
   ]
 }
