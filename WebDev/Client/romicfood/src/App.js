@@ -6,6 +6,7 @@ import {useState} from "react";
 import {Profile} from "./Components/Profile/Profile";
 import Card from "./Components/CardList/Card";
 import CardList from "./Components/CardList/CardList";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
     const [user, setUser] = useState({
