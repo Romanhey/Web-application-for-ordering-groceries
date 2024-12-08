@@ -9,8 +9,6 @@ html, body {
     line-height: 1.6; /* Улучшает читаемость текста */
 }
 
-
-
 /* Обертка для всего контента */
 .page-container {
     padding: 20px;
@@ -54,21 +52,36 @@ html, body {
 
 .category-button {
     font-family: "Roboto", sans-serif;
-    background-color: var(--gray);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--gray);
     padding: 10px 15px;
     font-size: calc(var(--index) * 0.7);
     border-radius: 5px;
     cursor: pointer;
-    border:1px solid var(--gray);
-    transition: background-color 0.3s ease;
+    border: 1px solid var(--gray);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .category-button:hover {
     color: var(--gray);
     background-color: var(--white);
+    border: 1px solid var(--gray); /* Обводка остается серой */
+}
 
+.category-button.active {
+    background-color: var(--gray); /* Темный фон для активной кнопки */
+    color: var(--white); /* Белый текст */
+    border: 1px solid var(--gray); /* Тот же цвет для границы */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Пробел между текстом и иконкой */
+}
 
+.category-button.active::before {
+    content: "✓"; /* Добавляем галочку перед текстом */
+    font-size: 0.8em; /* Размер галочки */
+    color: var(--white);
 }
 
 /* Стили для списка продуктов */
@@ -80,4 +93,23 @@ html, body {
     margin-top: 20px;
     padding: 0 20px;
     box-sizing: border-box;
+}
+@media (max-width: 1024px) {
+    .products-list {
+        gap: 15px; /* Уменьшаем расстояние между карточками */
+    }
+}
+
+@media (max-width: 768px) {
+    .products-list {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

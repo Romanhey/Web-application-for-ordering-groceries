@@ -1,94 +1,61 @@
-import React from 'react';
+import React, { useState } from "react";
 import Card from "./Card";
 import './CardList.css';
 function CardList({}) {
 
-    var products = [
-        {
-            "productId": 1,
-            "productName": "string",
-            "price": 10,
-            "productDescription": "string",
-            "categoryId": 1,
-            "image":"https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-            "category": {
-                "categoryId": 1,
-                "categoryName": "string",
-                "categoryDescription": "string"
-            }
-        },
-        {
-            "productId": 1,
-            "productName": "string",
-            "price": 10,
-            "productDescription": "string",
-            "categoryId": 1,
-            "image":"https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-            "category": {
-                "categoryId": 1,
-                "categoryName": "string",
-                "categoryDescription": "string"
-            }
-        },
-        {
-            "productId": 1,
-            "productName": "string",
-            "price": 10,
-            "productDescription": "string",
-            "categoryId": 1,
-            "image":"https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-            "category": {
-                "categoryId": 1,
-                "categoryName": "string",
-                "categoryDescription": "string"
-            }
-        },
-        {
-            "productId": 1,
-            "productName": "string",
-            "price": 10,
-            "productDescription": "string",
-            "categoryId": 1,
-            "image":"https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-            "category": {
-                "categoryId": 1,
-                "categoryName": "string",
-                "categoryDescription": "string"
-            }
-        },
-        {
-            "productId": 1,
-            "productName": "string",
-            "price": 10,
-            "productDescription": "string",
-            "categoryId": 1,
-            "image":"https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-            "category": {
-                "categoryId": 1,
-                "categoryName": "string",
-                "categoryDescription": "string"
-            }
-        }
-    ]
+    const [activeCategory, setActiveCategory] = useState("Все");
 
-    const categories = ["All", "Pizza", "Burgers", "Sushi"];
+    const products = [
+        {
+            productId: 1,
+            productName: "Пицца",
+            price: 10,
+            productDescription: "Delicious pizza",
+            categoryId: 1,
+            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
+        },
+        {
+            productId: 2,
+            productName: "Бургер",
+            price: 8,
+            productDescription: "Juicy burger",
+            categoryId: 2,
+            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
+        },
+        {
+            productId: 3,
+            productName: "Сущи",
+            price: 15,
+            productDescription: "Fresh sushi",
+            categoryId: 3,
+            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
+        },
+    ];
+    const categories = ["Все", "Пицца", "Бургер", "Суши"];
+    const filteredProducts = activeCategory === "Все"
+        ? products
+        : products.filter(product => product.categoryId.toString() === activeCategory);
     return (
         <div className="page-container">
-            <h1 className="menu-title">Меню</h1>
+            <div id = "menu"><h1 className="menu-title">Меню</h1></div>
             <div className="menu-quote">
                 <span>“Cibus est vita.”</span>
                 <span className="translation">(Еда — это жизнь.)</span>
             </div>
             <div className="categories">
                 {categories.map((category, index) => (
-                    <button className="category-button" key={index}>
+                    <button
+                        key={index}
+                        className={`category-button ${activeCategory === category ? "active" : ""}`}
+                        onClick={() => setActiveCategory(category)}
+                    >
                         {category}
                     </button>
                 ))}
             </div>
             <div className="products-list">
-                {products.map((product,index ) => (
-                    <Card product={product} key={index} />
+                {filteredProducts.map((product) => (
+                    <Card product={product} key={product.productId}/>
                 ))}
             </div>
         </div>

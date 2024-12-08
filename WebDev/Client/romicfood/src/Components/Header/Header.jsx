@@ -10,6 +10,10 @@ function Header({ isAuth }) {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const items = [
+        { name: 'Бургер', price: 300, image: '/images/burger.jpg' },
+        { name: 'Пицца', price: 600, image: '/images/pizza.jpg' },
+    ];
 
     return (
         <header>
@@ -28,9 +32,11 @@ function Header({ isAuth }) {
                         <a href="">Ресурсы</a>
                         <a href="">Контакты</a>
                     </div>
-                    <a href="" id="cart_button" className="cart-icon">
+                    <Cart items={items}> <a href="" id="cart_button" className="cart-icon">
+
                         <FiShoppingCart/>
                     </a>
+                    </Cart>
                     <div className={`nav_buttons 0{menuOpen ? 'open' : ''}`}>
                         <div className="nav_profile">
                             <NavLink
@@ -59,7 +65,7 @@ function Header({ isAuth }) {
                 <div className="header_content_text">
                     <h1>Абсолютно бесплатная еда</h1>
                     <h3>бесплатная еда каждый час</h3>
-                    <a href="">Меню</a>
+                    <a href="#menu">Меню</a>
                 </div>
             </div>
         </header>
