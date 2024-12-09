@@ -8,7 +8,6 @@ import Card from "./Components/CardList/Card";
 import CardList from "./Components/CardList/CardList";
 import Cart from "./Components/Cart/Cart";
 import Nav from "./Components/Nav/Nav";
-import {unmountComponentAtNode} from "react-dom";
 
 function App() {
     const [user, setUser] = useState({
@@ -49,7 +48,6 @@ function App() {
     ]);
     const [cartProductsList, setCartProductsList] = useState([...products]);
 
-    console.log(cartProductsList.length);
   return (
     <div className="App">
         <Nav isAuth={user?.id !== null}/>

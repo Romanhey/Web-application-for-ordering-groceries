@@ -44,7 +44,10 @@ function Cart({list,setList}) {
                 <div className="cart_summary">
                     <h3>Итого:</h3>
                     <p className="cart_total_price">{list.reduce((total, item) => total + item.price, 0)} ₽</p>
+                <div className="buttons_container">
                     <button className="cart_checkout_button">Оформить заказ</button>
+                    <button className="cart_escape_button">Назад</button>
+                </div>
                 </div>
             )}
         </div>
