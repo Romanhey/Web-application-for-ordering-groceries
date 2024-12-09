@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebDev.DTO;
-using WebDev.Entities;
 using WebDev.Models;
 
 namespace WebDev.services
@@ -64,7 +63,8 @@ namespace WebDev.services
         public async Task<List<Product>> GetAllProducts()
         {
             return await _context.Products
-                .Include(p => p.Category) // Загружаем категории
+                .Include(p => p.Category)
+                // Загружаем категории
                 .ToListAsync();
         }
 
@@ -117,14 +117,35 @@ namespace WebDev.services
             ValidatePrice(newProduct.Price);
             ValidateProductDescription(newProduct.ProductDescription);
 
-            _context.Products.Add(new Product
+
+
+            var newProductEntity = new Product
             {
                 Category = await _context.ProductCategories.FindAsync(newProduct.CategoryId),
                 ProductName = newProduct.ProductName,
                 ProductDescription = newProduct.ProductDescription,
-                Price = newProduct.Price
+                Price = newProduct.Price,
 
-            });
+            };
+
+            if (newProduct.formFile != null && newProduct.formFile.Length > 0)
+            {
+                using var memoryStream = new MemoryStream();
+                await newProduct.formFile.CopyToAsync(memoryStream);
+
+                if (memoryStream.Length > 0)
+                {
+                    newProductEntity.ImageData = memoryStream.ToArray();
+                }
+                else
+                {
+                    Console.WriteLine("Ошибка: Пустой поток данных.");
+                }
+            }
+            newProductEntity.ImageSrc = newProductEntity.ImageData != null ? $"data:image/png;base64,{Convert.ToBase64String(newProductEntity.ImageData)}" : null;
+            
+
+            _context.Products.Add(newProductEntity);
             await _context.SaveChangesAsync();
         }
     }

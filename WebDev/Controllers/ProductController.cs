@@ -15,7 +15,7 @@ namespace WebDev.Controllers
         private readonly ProductService _productService = service;
 
         [HttpPut("product")]
-        public async Task<IActionResult> CreateProduct([FromBody] ProductDTO model)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductDTO model)
         {
             await _productService.AddProduct(model);
 
