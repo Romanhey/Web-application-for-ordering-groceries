@@ -1,7 +1,49 @@
 import React from "react";
-import "./profile.css"; // Подключаем стили
+import "./profile.css";
+import {ENV} from "../../Share/share";
+import {useNavigate} from "react-router-dom"; // Подключаем стили
 
 export const Profile = ({user}) => {
+
+    let history = useNavigate();
+    let [orders, setOrders] = React.useState([]);
+
+    if (user?.userId == null) {
+        history("/auth");
+    }
+
+    React.useEffect( () => {
+        if (user?.userId == null) {
+            history("/auth");
+        }
+         getOrders();
+    }, []);
+
+    let getOrders = async () => {
+        try {
+            const response = await fetch(`${ENV.BASE_URL}/order/${user.userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.ok) {
+                const data = await response.json();
+
+                // Проверяем, что data является массивом. Если нет — преобразуем.
+                if (Array.isArray(data)) {
+                    setOrders(data);
+                } else {
+                    setOrders([data]); // Если это объект, оборачиваем его в массив
+                }
+            } else {
+                console.log("Ошибка получения данных о заказах");
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className="profile-page">
             {/* Заголовок страницы */}
@@ -33,9 +75,33 @@ export const Profile = ({user}) => {
             <div className="orders-section">
                 <h2>Мои заказы</h2>
                 <ul>
-                    <li>Пицца "Маргарита" - 12.11.2024</li>
-                    <li>Чизкейк - 10.11.2024</li>
-                    <li>Капучино - 08.11.2024</li>
+                    {orders != null && orders.map((order, index) => (
+                        <li key={index}>
+                            <div className="order-row">
+                                <span className="order-label">Дата заказа:</span>
+                                <span className="order-value">{
+                                    new Date(order.orderDate).toLocaleDateString()
+                                }</span>
+                            </div>
+                            <div className="order-row">
+                                <span className="order-label">Статус:</span>
+                                <span className="order-value">{order.status}</span>
+                            </div>
+                            <div className="order-row">
+                                <span className="order-label">Сумма:</span>
+                                <span className="order-value">{order.totalPrice} ₽</span>
+                            </div>
+                            <div className="order-row">
+                                <span className="order-label">Товары:</span>
+                                <span className="order-value">
+                                    {order.orderProducts.map((product, index) => (
+                                        <span key={index}>{product.productName}</span>
+                                    ))}
+                                </span>
+                            </div>
+                        </li>
+                    )
+                    )}
                 </ul>
             </div>
 
