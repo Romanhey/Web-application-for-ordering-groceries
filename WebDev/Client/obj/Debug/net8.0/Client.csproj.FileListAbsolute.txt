@@ -1,0 +1,12 @@
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\bin\Debug\net8.0\Client.deps.json
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\bin\Debug\net8.0\Client.dll
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\bin\Debug\net8.0\Client.pdb
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.AssemblyInfoInputs.cache
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.AssemblyInfo.cs
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.csproj.CoreCompileInputs.cache
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.sourcelink.json
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.dll
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\refint\Client.dll
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\Client.pdb
+C:\MY_STUDY\Web-application-for-ordering-groceries\WebDev\Client\obj\Debug\net8.0\ref\Client.dll
