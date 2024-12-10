@@ -1,9 +1,10 @@
 import React from 'react';
 import './Cart.css';
 import {FiShoppingCart, FiTrash2} from 'react-icons/fi';
-import {useNavigate} from "react-router-dom"; // Иконка для удаления товара
+import {useNavigate} from "react-router-dom";
+import {ENV} from "../../Share/share"; // Иконка для удаления товара
 
-function Cart({list,setList}) {
+function Cart({list,setList,user}) {
 
     let navigate = useNavigate();
 
@@ -11,6 +12,41 @@ function Cart({list,setList}) {
         let newList = [...list];
         newList.splice(index, 1);
         setList(newList);
+    }
+
+    let CreateOrder = async () => {
+        console.log(user)
+        if(user?.userId == null){
+            navigate('/auth');
+            return
+        }
+
+        try {
+            await fetch(`${ENV.BASE_URL}/order`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+
+                    "customerId": user.userId,
+                    "orderDate": (new Date()).toISOString(),
+                    "status": 0,
+                    "totalPrice": list.reduce((total, item) => total + item.price, 0),
+                    "productIds": list.map(item => item.productId)
+                })
+            }).then(res => {
+                if(res.status === 200){
+                    setList([]);
+                    navigate('/');
+                }else{
+                    alert("Произошла ошибка")
+                }
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 
 
@@ -54,7 +90,10 @@ function Cart({list,setList}) {
                     <h3>Итого:</h3>
                     <p className="cart_total_price">{list.reduce((total, item) => total + item.price, 0)} ₽</p>
                 <div className="buttons_container">
-                    <button className="cart_checkout_button">Оформить заказ</button>
+                    <button
+                        className="cart_checkout_button"
+                        onClick={CreateOrder}
+                    >Оформить заказ</button>
                     <button
                         className="cart_escape_button"
                         onClick={() => navigate('/')}

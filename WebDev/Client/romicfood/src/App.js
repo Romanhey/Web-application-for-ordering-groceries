@@ -12,7 +12,7 @@ import {ENV} from "./Share/share";
 
 function App() {
     const [user, setUser] = useState({
-        id: null,
+        userId: null,
         login: null,
         name: null,
         email: null,
@@ -93,6 +93,7 @@ function App() {
             <Route path={"/cart"} element={
                 <Cart
                     list={cartProductsList}
+                    user={user}
                     setList = {setCartProductsList}
                 />
             } />

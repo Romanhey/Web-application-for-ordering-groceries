@@ -40,7 +40,7 @@ function Auth({setUser}) {
             }).then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    if (data.status === 200) {
+                    if (data.isLogged) {
                         setUser(data.user);
                         navigaion("/");
                     } else {
