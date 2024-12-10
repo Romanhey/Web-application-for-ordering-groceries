@@ -37,9 +37,10 @@ function CardList({products, setProductsCardList}) {
     useEffect(() => {
         GetAllCategories();
     },[])
+    console.log(activeCategory)
     const filteredProducts = activeCategory === -1
         ? products
-        : products.filter(product => product.categoryId.toString() === activeCategory);
+        : products.filter(product => product.categoryId === activeCategory);
 
     return (
         <div className="page-container">
