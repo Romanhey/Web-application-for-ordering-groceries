@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Card from "./Card";
 import './CardList.css';
 import {ENV} from "../../Share/share";
-function CardList({searchText,cart,products, setProductsCardList}) {
+function CardList({targetRef,searchText,cart,products, setProductsCardList}) {
 
 
     const [categories,setCategories] = useState([]);
@@ -44,7 +44,7 @@ function CardList({searchText,cart,products, setProductsCardList}) {
 
     const seachProducts = searchText === "" ? filteredProducts : filteredProducts.filter(product => product.productName.toLowerCase().includes(searchText.toLowerCase()));
     return (
-        <div className="page-container">
+        <div className="page-container" ref={targetRef}>
             <div id = "menu"><h1 className="menu-title">Меню</h1></div>
             <div className="menu-quote">
                 <span>“Cibus est vita.”</span>

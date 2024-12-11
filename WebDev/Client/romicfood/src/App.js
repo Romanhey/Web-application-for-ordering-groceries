@@ -2,7 +2,7 @@ import './App.css';
 import Header from "./Components/Header/Header";
 import Auth from "./Components/Auth/Auth";
 import {Route, Routes} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Profile} from "./Components/Profile/Profile";
 import Card from "./Components/CardList/Card";
 import CardList from "./Components/CardList/CardList";
@@ -21,6 +21,7 @@ function App() {
 
     const [searchText,setSearchText] = useState("");
 
+    const targetRef = useRef(null);
 
     const [products,setProducts] = useState([]);
     const [cartProductsList, setCartProductsList] = useState([]);
@@ -46,6 +47,12 @@ function App() {
         }
     }
 
+    const handleInputChange = (e) => {
+        if (targetRef.current) {
+            targetRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     useEffect(() => {
             GetAllProducts();
     }, []);
@@ -58,6 +65,7 @@ function App() {
             products={products}
             setSearchText={setSearchText}
             searchText={searchText}
+            scroll={handleInputChange}
         />
 
         <Routes>
@@ -65,6 +73,7 @@ function App() {
                 <>
                     <Header isAuth={user?.userId !== null}/>
                     <CardList
+                        targetRef={targetRef}
                         products={products}
                         setProductsCardList={setCartProductsList}
                         cart={cartProductsList}

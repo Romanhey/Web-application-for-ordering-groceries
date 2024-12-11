@@ -5,7 +5,7 @@ import {FiShoppingCart} from "react-icons/fi";
 import {NavLink, useNavigate} from "react-router-dom";
 import "./../Header/header.css"
 
-function Nav({isAuth,CartProductsCount,setSearchText,searchText}) {
+function Nav({scroll,isAuth,CartProductsCount,setSearchText,searchText}) {
 
     let history = useNavigate();
 
@@ -29,6 +29,7 @@ function Nav({isAuth,CartProductsCount,setSearchText,searchText}) {
                         value={searchText}
                         onChange={(e) => {
                             setSearchText(e.target.value);
+                            scroll();
                         }}
                     />
                     <img src={`${process.env.PUBLIC_URL}/img/icons-reach.svg`} alt="search icon"/>
