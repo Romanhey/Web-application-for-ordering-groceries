@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-        <Nav isAuth={user?.userId !== null} CartProductsCount={cartProductsList.length}/>
+        <Nav isAuth={user?.userId !== null} CartProductsCount={cartProductsList.length == 0 ? 0 : cartProductsList.reduce((acc, product) => acc + product.quantity)}/>
 
         <Routes>
             <Route path="/" element={

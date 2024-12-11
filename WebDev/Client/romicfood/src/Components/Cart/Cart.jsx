@@ -59,10 +59,10 @@ function Cart({list,setList,user}) {
                 {list.length > 0 ? (
                     list.map((item, index) => (
                         <div key={index} className="cart_item">
-                            <img src={item.imageSrc} alt={item.name} className="cart_item_image" />
+                            <img src={item.product.imageSrc} alt={item.product.name} className="cart_item_image" />
                             <div className="cart_item_details">
-                                <h4 className="cart_item_name">{item.productName}</h4>
-                                <p className="cart_item_price">{item.price} ₽</p>
+                                <h4 className="cart_item_name">{item.product.productName}</h4>
+                                <p className="cart_item_price">{item.product.price} ₽</p>
                             </div>
                             <button
                                 className="cart_item_remove"
@@ -89,7 +89,7 @@ function Cart({list,setList,user}) {
             {list.length > 0 && (
                 <div className="cart_summary">
                     <h3>Итого:</h3>
-                    <p className="cart_total_price">{list.reduce((total, item) => total + item.price, 0)} ₽</p>
+                    <p className="cart_total_price">{list.reduce((total, item) => total + item.product.price, 0)} ₽</p>
                 <div className="buttons_container">
                     <button
                         className="cart_checkout_button"

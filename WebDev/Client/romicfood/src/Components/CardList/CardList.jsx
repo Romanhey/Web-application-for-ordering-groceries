@@ -67,7 +67,7 @@ function CardList({products, setProductsCardList}) {
                         product={product}
                         key={product.productId}
                         addProductToCard={()=>{
-                            setProductsCardList((prev) => [...prev, product]);
+                            setProductsCardList((prev) => [...prev, {product:product,quantity:1}]);
                         }}
                     />
                 ))}

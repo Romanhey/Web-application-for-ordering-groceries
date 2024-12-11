@@ -55,7 +55,6 @@ namespace WebDev.services
                 .FirstOrDefaultAsync(o => o.OrderId == id)
                 ?? throw new Exception("Order not found");
 
-            // Получаем идентификаторы продуктов через промежуточную таблицу
             var productIds = await _context.OrderProducts
                 .Where(op => op.OrderId == id)
                 .Select(op => op.ProductId)
@@ -142,5 +141,14 @@ namespace WebDev.services
                 .Include(o=>o.OrderProducts)
                             .ToListAsync();
         }
+
+        public async Task<List<Order>> GetOrdersByUserId(int userId)
+        {
+            return await _context.Orders
+                .Where(o => o.CustomerId == userId)
+                .Include(o => o.OrderProducts)
+                .ToListAsync();
+        }
+
     }
 }

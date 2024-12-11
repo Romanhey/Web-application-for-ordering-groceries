@@ -49,5 +49,10 @@ namespace WebDev.Controllers
             return Ok(await _orderService.GetAllOrders());
         }
 
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GerOrderByUserId(int userId)
+        {
+            return Ok(await _orderService.GetOrdersByUserId(userId));
+        }
     }
 }
