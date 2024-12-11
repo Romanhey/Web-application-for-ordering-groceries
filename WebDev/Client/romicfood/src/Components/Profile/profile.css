@@ -59,21 +59,19 @@
     color: var(--white, #fff); /* Текст становится белым */
 }
 
-/* Основная информация о профиле */
 .profile-main-info {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
-    gap: 5px; /* Расстояние между строками */
+    gap: 5px;
     width: 100%;
     max-width: 600px;
 
 }
 
-/* Для каждого ряда */
 .info-row {
     display: flex;
-    gap: 5px; /* Расстояние между полями */
+    gap: 5px;
     align-items: center; /* Выравнивание по вертикали */
 }
 
@@ -124,6 +122,7 @@
 
 /* Секция "Мои заказы" */
 .orders-section {
+    font-size: 1rem;
     margin-top: 40px; /* Отступ сверху */
     padding: 20px;
     border: 2px solid var(--gray, #333); /* Тёмно-серая рамка */
@@ -221,9 +220,8 @@ input::placeholder {
 /* Адаптивность */
 /* Адаптивность для ширины экрана до 768px */
 @media (max-width: 768px) {
-    /* Общий стиль страницы профиля */
+
     .profile-page {
-        
         flex-direction: column; /* Колонка вместо строки */
         padding: 15px; /* Уменьшенные отступы */
     }
@@ -232,17 +230,20 @@ input::placeholder {
         font-size: 1.3rem; /* Уменьшенный размер шрифта */
         text-align: center;
     }
+
     .edit-button {
         padding: 8px 14px;
         font-size: 0.8rem;
     }
     /* Основная информация о профиле */
     .profile-main-info {
+        font-size: 12px;
         margin-top: 20px;
     }
 
     /* Секция "Мои заказы" */
     .orders-section {
+
         margin-top: 20px; /* Уменьшенный отступ сверху */
         padding: 15px; /* Уменьшенный внутренний отступ */
     }
@@ -280,9 +281,30 @@ input::placeholder {
     }
 }
 @media (max-width: 480px) {
-
-
+    .profile-page {
+        padding: 5px;
+    }
+    .info-label{
+        flex: 0 0 100px;
+        padding: 8px ;
+    }
+    .info-value {
+        flex: 0 0 1fr;
+    }
+    .profile-main-info{
+        flex-direction: column;
+    }
+    .orders-section li {
+        font-size: 0.8rem; /* Установим размер текста */
+    }
+    .edit-button,
+    .save-button,
+    .logout-button {
+        font-size: 0.6rem;
+    }
 }
+
+
 
 
 
