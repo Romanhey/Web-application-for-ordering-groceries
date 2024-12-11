@@ -160,12 +160,18 @@ namespace WebDev.services
             {
                 throw new ArgumentException("Address is invalid. It must be non-empty and no longer than 50 characters.");
             }
+            
+            if(!IsCorrectString(model.Password) || model.Password.Length < 6)
+            {
+                throw new ArgumentException("Password is invalid. It must be non-empty and no longer than 50 characters.");
+            }
 
             // Обновление данных пользователя
             user.Login = model.Login;
             user.Email = model.Email;
             user.FullName = model.FullName;
             user.Address = model.Address;
+            user.Password = GetHash(model.Password);
 
             // Сохраняем изменения в базе данных
             await _context.SaveChangesAsync();
