@@ -44,7 +44,7 @@ namespace WebDev.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductDTO model)
+        public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductDTO model)
         {
             await _productService.UpdateProduct(id, model);
             return Ok();

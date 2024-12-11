@@ -37,10 +37,11 @@ function Cart({list,setList,user}) {
                 })
             }).then(res => {
                 if(res.status === 200){
+                    alert("Заказ оформле успешно");
                     setList([]);
                     navigate('/');
                 }else{
-                    alert("Произошла ошибка")
+                    console.log(res);
                 }
             })
         }
@@ -58,7 +59,7 @@ function Cart({list,setList,user}) {
                 {list.length > 0 ? (
                     list.map((item, index) => (
                         <div key={index} className="cart_item">
-                            <img src={item.image} alt={item.name} className="cart_item_image" />
+                            <img src={item.imageSrc} alt={item.name} className="cart_item_image" />
                             <div className="cart_item_details">
                                 <h4 className="cart_item_name">{item.productName}</h4>
                                 <p className="cart_item_price">{item.price} ₽</p>
@@ -76,7 +77,7 @@ function Cart({list,setList,user}) {
                     ))
                 ) : (
                     <div className="cart_empty">
-                        <FiShoppingCart style={{ fontSize: '48px', color: '#cccccc' }} />
+                        <FiShoppingCart style={{ fontSize: '100px', color: '#cccccc' }} />
                         <p>Ваша корзина пуста</p>
                         <button
                             className="cart_escape_button"

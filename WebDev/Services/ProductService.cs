@@ -97,6 +97,7 @@ namespace WebDev.services
         // Обновление информации о продукте
         public async Task UpdateProduct(int id, ProductDTO updatedProduct)
         {
+            // Находим продукт по ID
             var product = await _context.Products.FindAsync(id);
             if (product == null)
                 throw new Exception($"Product with ID {id} not found");
@@ -107,8 +108,27 @@ namespace WebDev.services
             product.Price = updatedProduct.Price;
             product.Category = await _context.ProductCategories.FindAsync(updatedProduct.CategoryId);
 
+            // Если передан новый файл изображения
+            if (updatedProduct.formFile != null && updatedProduct.formFile.Length > 0)
+            {
+                using var memoryStream = new MemoryStream();
+                await updatedProduct.formFile.CopyToAsync(memoryStream);
+
+                if (memoryStream.Length > 0)
+                {
+                    product.ImageData = memoryStream.ToArray();
+                    product.ImageSrc = $"data:image/png;base64,{Convert.ToBase64String(product.ImageData)}";
+                }
+                else
+                {
+                    throw new Exception("Uploaded image file is empty.");
+                }
+            }
+
+            // Сохраняем изменения в базе данных
             await _context.SaveChangesAsync();
         }
+
 
         public async Task AddProduct(ProductDTO newProduct)
         {

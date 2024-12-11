@@ -99,6 +99,28 @@
     text-align: left; /* Текст выравнивается по левому краю */
     color: #333; /* Цвет текста значения */
 }
+.save-button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.save-button {
+    background-color: var(--gray, #28a745); /* Зеленая кнопка */
+    color: var(--white, #fff); /* Белый текст */
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Плавный эффект */
+    border: 2px solid var(--gray);
+}
+
+.save-button:hover {
+    background-color: var(--white, #218838); /* Темно-зеленая кнопка */
+    color: var(--gray);
+}
 
 /* Секция "Мои заказы" */
 .orders-section {
@@ -128,6 +150,7 @@
     flex-direction: column;
     gap: 10px; /* Расстояние между элементами списка */
     text-align: left;
+    background-color: var(--white);
 }
 
 .orders-section li {
@@ -167,6 +190,33 @@
 .logout-button .icon {
     font-size: 1.2rem; /* Размер иконки */
 }
+/* Стили для input */
+input {
+    width: 100%; /* Поля ввода занимают всю доступную ширину */
+    padding: 10px; /* Внутренний отступ для удобного ввода текста */
+    border: 2px solid var(--gray, #333); /* Темно-серая рамка */
+    border-radius: 8px; /* Скругленные углы */
+    font-size: 1rem; /* Размер шрифта */
+    color: var(--gray, #333); /* Цвет текста */
+    background-color: var(--white, #fff); /* Белый фон */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    outline: none; /* Убираем стандартное выделение */
+    transition: all 0.3s ease; /* Плавный переход для эффектов */
+}
+
+/* Стили для input при фокусе */
+input:focus {
+    border-color: var(--blue, #007bff); /* Меняем цвет рамки на синий при фокусе */
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3); /* Подсветка при фокусе */
+    background-color: #f0f8ff; /* Светло-голубой фон */
+}
+
+/* Стили для placeholder */
+input::placeholder {
+    color: var(--gray, #666); /* Цвет текста placeholder */
+    font-style: italic; /* Косой шрифт для стилизации */
+    opacity: 0.8; /* Легкая прозрачность */
+}
 
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -176,7 +226,6 @@
 
     /* Общий стиль страницы профиля */
     .profile-page {
-        position: absolute;
         left: 0;
         top: 0;
         width: 100%;
@@ -292,81 +341,7 @@
         color: var(--gray, #333); /* Тёмно-серый текст */
         border: 2px solid var(--gray, #333); /* Добавляем рамку */
     }
-
-    /* Адаптивность */
-    @media (max-width: 768px) {
-        /* Заголовок */
-        .profile-header h1 {
-            font-size: 1.5rem; /* Уменьшаем заголовок */
-        }
-
-        .edit-button {
-            font-size: 0.9rem; /* Уменьшаем кнопку */
-        }
-
-        /* Основная информация о профиле */
-        .profile-main-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Выравниваем по левому краю */
-            gap: 5px; /* Уменьшаем расстояние между строками */
-            font-size: 0.75rem; /* Устанавливаем фиксированный размер текста */
-            color: var(--gray, #333); /* Тёмно-серый цвет */
-            padding: 20px; /* Добавляем отступы */
-            width: 100%;
-        }
-
-        /* Блоки с рамкой для каждого поля */
-        .profile-field {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #000; /* Черная рамка */
-            border-radius: 8px; /* Скругленные углы */
-            background-color: var(--white, #ffffff); /* Белый фон */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
-            display: flex;
-            flex-direction: column; /* Элементы внутри блока будут располагаться по колонке */
-        }
-
-        /* Название поля */
-        .field-label {
-            font-weight: bold;
-            color: var(--gray, #333); /* Тёмно-серый цвет */
-            margin-bottom: 5px; /* Отступ снизу */
-        }
-
-        /* Значение поля */
-        .field-value {
-            color: var(--gray, #333); /* Тёмно-серый цвет */
-            padding-left: 10px; /* Отступ слева для значения */
-        }
-    }
-
-    /* Для десктопной версии */
-    .profile-main-info {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Выравнивание по левому краю */
-        margin-top: 30px; /* Отступ сверху */
-        gap: 5px; /* Расстояние между строками */
-        font-size: 1rem; /* Установим размер текста */
-        color: var(--gray, #333); /* Тёмно-серый цвет */
-        width: 100%;
-        max-width: 800px; /* Максимальная ширина */
-        margin: 0 auto; /* Центрирование на странице */
-    }
-
-    /* Блоки с рамкой для каждого поля */
-    .profile-field {
-        width: 100%;
-        padding: 10px;
-        border: 2px solid #000;
-        border-radius: 8px;
-        background-color: var(--white, #ffffff);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column; /* Располагаем элементы внутри блока по колонке */
-    }
 }
+
 
 

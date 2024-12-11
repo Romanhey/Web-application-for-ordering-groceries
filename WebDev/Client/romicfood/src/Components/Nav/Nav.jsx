@@ -29,17 +29,6 @@ function Nav({isAuth}) {
                     <a href="">Сообщество</a>
                     <a href="">Ресурсы</a>
                     <a href="">Контакты</a>
-                </div>
-                <a
-                    id="cart_button"
-                    className="cart-icon"
-                    onClick={() => history("/cart")}
-                >
-                    <FiShoppingCart
-                        style={{cursor: "pointer"}}
-                    />
-                </a>
-                <div className={`nav_buttons 0{menuOpen ? 'open' : ''}`}>
                     <div className="nav_profile">
                         <NavLink
                             to="/profile"
@@ -56,6 +45,18 @@ function Nav({isAuth}) {
                             Войти
                         </NavLink>
                     </div>
+                </div>
+                <a
+                    id="cart_button"
+                    className="cart-icon"
+                    onClick={() => history("/cart")}
+                >
+                    <FiShoppingCart
+                        style={{cursor: "pointer"}}
+                    />
+                </a>
+                <div className={`nav_buttons 0{menuOpen ? 'open' : ''}`}>
+
                 </div>
             </div>
 

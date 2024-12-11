@@ -21,33 +21,8 @@ function App() {
 
 
 
-    const [products,setProducts] = useState([
-        {
-            productId: 1,
-            productName: "Пицца",
-            price: 10,
-            productDescription: "Delicious pizza",
-            categoryId: 1,
-            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-        },
-        {
-            productId: 2,
-            productName: "Бургер",
-            price: 8,
-            productDescription: "Juicy burger",
-            categoryId: 2,
-            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-        },
-        {
-            productId: 3,
-            productName: "Сущи",
-            price: 15,
-            productDescription: "Fresh sushi",
-            categoryId: 3,
-            image: "https://kykagroup.com/wp-content/uploads/2023/07/IMG-Worlds-of-Adventure.jpg",
-        },
-    ]);
-    const [cartProductsList, setCartProductsList] = useState([...products]);
+    const [products,setProducts] = useState([]);
+    const [cartProductsList, setCartProductsList] = useState([]);
 
     let GetAllProducts = async () => {
         try{
@@ -76,12 +51,12 @@ function App() {
 
   return (
     <div className="App">
-        <Nav isAuth={user?.id !== null}/>
+        <Nav isAuth={user?.userId !== null}/>
 
         <Routes>
             <Route path="/" element={
                 <>
-                    <Header isAuth={user?.id !== null}/>
+                    <Header isAuth={user?.userId !== null}/>
                     <CardList
                         products={products}
                         setProductsCardList={setCartProductsList}
