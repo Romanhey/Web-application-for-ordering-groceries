@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Card from "./Card";
 import './CardList.css';
 import {ENV} from "../../Share/share";
-function CardList({products, setProductsCardList}) {
+function CardList({cart,products, setProductsCardList}) {
 
 
     const [categories,setCategories] = useState([]);
@@ -67,7 +67,15 @@ function CardList({products, setProductsCardList}) {
                         product={product}
                         key={product.productId}
                         addProductToCard={()=>{
-                            setProductsCardList((prev) => [...prev, {product:product,quantity:1}]);
+                            var index = cart.length !== 0 ? cart.findIndex((item)=>item.product.productId === product.productId) : -1;
+                            if(index !== -1){
+                                let newCart = [...cart];
+                                newCart[index].quantity++;
+                                setProductsCardList(newCart);
+                            }
+                            else{
+                                setProductsCardList([...cart,{product:product,quantity:1}])
+                            }
                         }}
                     />
                 ))}

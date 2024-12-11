@@ -49,7 +49,7 @@ function Cart({list,setList,user}) {
             console.log(err);
         }
     }
-
+console.log(list)
 
 
     return (
@@ -64,6 +64,30 @@ function Cart({list,setList,user}) {
                                 <h4 className="cart_item_name">{item.product.productName}</h4>
                                 <p className="cart_item_price">{item.product.price} ₽</p>
                             </div>
+
+                            <div className="cart_item_quantity">
+                                <button
+                                    className="cart_item_quantity_button"
+                                    onClick={() => {
+                                        let newList = [...list];
+                                        newList[index].quantity--;
+                                        if (newList[index].quantity === 0) {
+                                            newList.splice(index, 1);
+                                        }
+                                        setList(newList);
+                                    }}
+                                >-</button>
+                                <p className="cart_item_quantity_number">{item.quantity}</p>
+                                <button
+                                    className="cart_item_quantity_button"
+                                    onClick={() => {
+                                        let newList = [...list];
+                                        newList[index].quantity++;
+                                        setList(newList);
+                                    }}
+                                >+</button>
+                            </div>
+
                             <button
                                 className="cart_item_remove"
                                 onClick={() => removeProductFromCart(index)}
@@ -89,7 +113,7 @@ function Cart({list,setList,user}) {
             {list.length > 0 && (
                 <div className="cart_summary">
                     <h3>Итого:</h3>
-                    <p className="cart_total_price">{list.reduce((total, item) => total + item.product.price, 0)} ₽</p>
+                    <p className="cart_total_price">{list.reduce((total, item) => total + item.product.price * item.quantity, 0)} ₽</p>
                 <div className="buttons_container">
                     <button
                         className="cart_checkout_button"
