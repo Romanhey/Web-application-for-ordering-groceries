@@ -5,7 +5,8 @@ import {FiShoppingCart} from "react-icons/fi";
 import {NavLink, useNavigate} from "react-router-dom";
 import "./../Header/header.css"
 
-function Nav({isAuth,CartProductsCount}) {
+function Nav({isAuth,CartProductsCount,setSearchText,searchText}) {
+
     let history = useNavigate();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,14 @@ function Nav({isAuth,CartProductsCount}) {
             </div>
             <div className="navigation">
                 <div className="nav_search">
-                    <input type="text" placeholder="Search"/>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchText}
+                        onChange={(e) => {
+                            setSearchText(e.target.value);
+                        }}
+                    />
                     <img src={`${process.env.PUBLIC_URL}/img/icons-reach.svg`} alt="search icon"/>
                 </div>
                 <div className={`nav_buttons ${isMenuOpen ? 'open' : ''}`}>

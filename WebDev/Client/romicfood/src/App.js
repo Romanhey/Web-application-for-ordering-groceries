@@ -19,6 +19,7 @@ function App() {
         address: null
     });
 
+    const [searchText,setSearchText] = useState("");
 
 
     const [products,setProducts] = useState([]);
@@ -51,7 +52,13 @@ function App() {
 
   return (
     <div className="App">
-        <Nav isAuth={user?.userId !== null} CartProductsCount={cartProductsList.reduce((res,pr)=>res+pr.quantity,0)}/>
+        <Nav
+            isAuth={user?.userId !== null}
+            CartProductsCount={cartProductsList.reduce((res, pr) => res + pr.quantity, 0)}
+            products={products}
+            setSearchText={setSearchText}
+            searchText={searchText}
+        />
 
         <Routes>
             <Route path="/" element={
@@ -61,6 +68,7 @@ function App() {
                         products={products}
                         setProductsCardList={setCartProductsList}
                         cart={cartProductsList}
+                        searchText={searchText}
                     />
                 </>
             } />
