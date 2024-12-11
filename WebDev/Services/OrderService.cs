@@ -19,7 +19,7 @@ namespace WebDev.services
                 ?? throw new Exception($"User with ID {model.CustomerId} not found");
 
             var products = await _context.Products
-                .Where(p => model.ProductIds.Contains(p.ProductId))
+                .Where(p => model.ProductIds.Select(e=>e.ProductId).Contains(p.ProductId))
                 .ToListAsync();
 
             if (products.Count != model.ProductIds.Count)
@@ -33,7 +33,7 @@ namespace WebDev.services
                 DeliveryAddress = user.Address,
                 OrderDate = DateTime.UtcNow,
                 Status = model.Status,
-                TotalPrice = products.Sum(p => p.Price),
+                TotalPrice = products.Sum(p => p.Price*model.ProductIds.First(e=>e.ProductId==p.ProductId).Quantity),
             };
 
             _context.Orders.Add(order);
@@ -42,7 +42,9 @@ namespace WebDev.services
             var orderProducts = products.Select(p => new OrderProduct
             {
                 OrderId = order.OrderId,
-                ProductId = p.ProductId
+                ProductId = p.ProductId,
+                Quantity = model.ProductIds.First(e=>e.ProductId==p.ProductId).Quantity,
+                ProductName = products.First(e=>e.ProductId==p.ProductId).ProductName
             }).ToList();
 
             await _context.OrderProducts.AddRangeAsync(orderProducts);
@@ -69,7 +71,9 @@ namespace WebDev.services
             order.OrderProducts = products.Select(p => new OrderProduct
             {
                 OrderId = order.OrderId,
-                ProductId = p.ProductId
+                ProductId = p.ProductId,
+                Quantity = productIds.Count(id => id == p.ProductId),
+                ProductName = products.First(e=>e.ProductId==p.ProductId).ProductName
             }).ToList();
 
             return order;
@@ -86,14 +90,14 @@ namespace WebDev.services
             order.Status = model.Status;
 
             var products = await _context.Products
-                .Where(p => model.ProductIds.Contains(p.ProductId))
+                .Where(p => model.ProductIds.Select(e=>e.ProductId).Contains(p.ProductId))
                 .ToListAsync();
 
             if (products.Count != model.ProductIds.Count)
                 throw new Exception("Some products were not found");
 
 
-            order.TotalPrice = products.Sum(p => p.Price);
+            order.TotalPrice = products.Sum(p => p.Price*model.ProductIds.First(e=>e.ProductId==p.ProductId).Quantity);
 
             var oldOrderProducts = await _context.OrderProducts
                     .Where(op => op.OrderId == order.OrderId)
@@ -104,7 +108,9 @@ namespace WebDev.services
             var orderProducts = products.Select(p => new OrderProduct
             {
                 OrderId = order.OrderId,
-                ProductId = p.ProductId
+                ProductId = p.ProductId,
+                Quantity = model.ProductIds.First(e=>e.ProductId==p.ProductId).Quantity,
+                ProductName = products.First(e=>e.ProductId==p.ProductId).ProductName
             }).ToList();
 
             await _context.OrderProducts.AddRangeAsync(orderProducts);

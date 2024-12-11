@@ -178,7 +178,7 @@ export const Profile = ({ user }) => {
                                     <span className="order-label">Товары:</span>
                                     <span className="order-value">
                             {order.orderProducts.map((product, index) => (
-                                <span key={index}>{product.productName}</span>
+                                <span key={index}>{product.productName} x {product.quantity}</span>
                             ))}
                         </span>
                                 </div>
