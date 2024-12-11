@@ -5,7 +5,7 @@ import {FiShoppingCart} from "react-icons/fi";
 import {NavLink, useNavigate} from "react-router-dom";
 import "./../Header/header.css"
 
-function Nav({isAuth}) {
+function Nav({isAuth,CartProductsCount}) {
     let history = useNavigate();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,6 +54,9 @@ function Nav({isAuth}) {
                     <FiShoppingCart
                         style={{cursor: "pointer"}}
                     />
+                    {CartProductsCount > 0 && (
+                        <span className="cart-count">{CartProductsCount}</span>
+                    )}
                 </a>
                 <div className={`nav_buttons 0{menuOpen ? 'open' : ''}`}>
 
