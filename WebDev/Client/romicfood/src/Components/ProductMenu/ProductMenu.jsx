@@ -6,7 +6,7 @@ function ProductMenu({setProductMenu,product,isAdmin}) {
 
 
     return (
-        <>
+        <div >
             <div className={["product-menu_bg",product?.productId == null ? "" : "active"].join(" ")}></div>
         <div
             className={["product-menu", product?.productId == null ? "" : "active"].join(" ")}
@@ -36,7 +36,7 @@ function ProductMenu({setProductMenu,product,isAdmin}) {
 
             </div>
         </div>
-        </>
+        </div>
     );
 }
 
