@@ -1,17 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebDev.DTO;
 using WebDev.Models;
+using WebDev.Services;
 
 namespace WebDev.services
 {
-    public class ProductService
+    public class ProductService:BaseService
     {
-        private readonly ApplicationDBContext _context;
-
-        public ProductService(ApplicationDBContext context)
-        {
-            _context = context;
-        }
+        public ProductService(ApplicationDBContext context) : base(context) { }
 
         // Валидация имени продукта
         public void ValidateProductName(string productName)

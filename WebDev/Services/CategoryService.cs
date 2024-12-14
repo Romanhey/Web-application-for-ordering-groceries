@@ -2,16 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using WebDev.DTO;
 using WebDev.Models;
+using WebDev.Services;
 
 namespace WebDev.services
 {
-    public class CategoryService
+    public class CategoryService:BaseService
     {
-        public ApplicationDBContext _context;
-        public CategoryService(ApplicationDBContext context)
-        { 
-            _context = context; 
-        }
+        public CategoryService(ApplicationDBContext context):base(context){}
         public async Task AddCategory(CategoryDTO model)
         {
             // Проверка: описание категории не должно быть пустым или слишком длинным

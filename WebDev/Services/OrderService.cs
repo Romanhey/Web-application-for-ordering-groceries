@@ -3,14 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using WebDev.DTO;
 using WebDev.Entities;
 using WebDev.Models;
+using WebDev.Services;
 
 namespace WebDev.services
 {
-    public class OrderService
+    public class OrderService:BaseService
     {
-        public ApplicationDBContext _context;
-        public OrderService(ApplicationDBContext context)
-        { _context = context; }
+        public OrderService(ApplicationDBContext context):base(context){}
 
 
         public async Task AddOrder(OrderDTO model)

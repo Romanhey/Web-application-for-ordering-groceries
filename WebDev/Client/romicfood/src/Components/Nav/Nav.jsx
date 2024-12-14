@@ -35,8 +35,8 @@ function Nav({scroll,isAuth,CartProductsCount,setSearchText,searchText}) {
                     <img src={`${process.env.PUBLIC_URL}/img/icons-reach.svg`} alt="search icon"/>
                 </div>
                 <div className={`nav_buttons ${isMenuOpen ? 'open' : ''}`}>
-                    <a href="">Сообщество</a>
-                    <a href="">Ресурсы</a>
+                    <a href="">Доставка</a>
+                    <a href="">О нас</a>
                     <a href="">Контакты</a>
                     <div className="nav_profile">
                         <NavLink

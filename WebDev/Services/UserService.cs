@@ -6,14 +6,13 @@ using System.Security.Cryptography;
 using System.Text;
 using WebDev.DTO;
 using WebDev.Models;
+using WebDev.Services;
 
 namespace WebDev.services
 {
-    public class UserService
+    public class UserService:BaseService
     {
-        public ApplicationDBContext _context;
-        public UserService(ApplicationDBContext context)
-            { _context = context; }
+        public UserService(ApplicationDBContext context):base(context) { }
         public async Task<LoginResponse?> Login(LoginDTO model) 
         {
             var response = new LoginResponse();
