@@ -1,0 +1,25 @@
+@startuml
+!include ./Program.puml
+!include ./Entities/OrderProduct.puml
+!include ./Entities/Order.puml
+!include ./Entities/Product.puml
+!include ./Entities/ProductCategory.puml
+!include ./Entities/OrderStatus.puml
+!include ./Entities/User.puml
+!include ./Services/BaseService.puml
+!include ./Services/ProductService.puml
+!include ./Services/UserService.puml
+!include ./Services/OrderService.puml
+!include ./Services/CategoryService.puml
+!include ./DTO/CategoryDTO.puml
+!include ./DTO/OrderDTO.puml
+!include ./DTO/RegisterDTO.puml
+!include ./DTO/LoginDTO.puml
+!include ./DTO/ProductDTO.puml
+!include ./DTO/UserUpdateDTO.puml
+!include ./DTO/LoginResponse.puml
+!include ./Controllers/UserController.puml
+!include ./Controllers/OrderController.puml
+!include ./Controllers/ProductController.puml
+!include ./Controllers/CategoryController.puml
+@enduml

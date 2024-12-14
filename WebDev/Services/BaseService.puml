@@ -1,0 +1,6 @@
+@startuml
+abstract class BaseService {
+    + _context : ApplicationDBContext
+    + BaseService(context:ApplicationDBContext)
+}
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+enum OrderStatus {
+    Pending,
+    Shipped,
+    Delivered,
+    Canceled,
+}
+@enduml

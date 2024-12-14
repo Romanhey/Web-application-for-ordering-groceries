@@ -1,0 +1,11 @@
+@startuml
+class CategoryService {
+    + CategoryService(context:ApplicationDBContext)
+    + <<async>> AddCategory(model:CategoryDTO) : Task
+    + <<async>> GetCategory(id:int) : Task<ProductCategory>
+    + <<async>> DeleteCategory(id:int) : Task
+    + <<async>> UpdateCategory(id:int, model:CategoryDTO) : Task
+    + <<async>> GetAllCategories() : Task<List<ProductCategory>>
+}
+BaseService <|-- CategoryService
+@enduml

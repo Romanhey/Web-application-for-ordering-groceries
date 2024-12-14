@@ -1,0 +1,10 @@
+@startuml
+class CategoryController {
+- <<readonly>> _categoryService : CategoryService
++ <<async>> AddCategory(model:CategoryDTO) : Task<IActionResult>
++ <<async>> GetCategory(id:int) : Task<IActionResult>
++ <<async>> DeleteCategory(id:int) : Task<IActionResult>
++ <<async>> UpdateCategory(id:int, model:CategoryDTO) : Task <IActionResult>
++ <<async>> GetAllCategories() : Task<IActionResult>
+}
+@enduml

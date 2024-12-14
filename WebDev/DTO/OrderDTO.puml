@@ -1,0 +1,13 @@
+@startuml
+class OrderDTO {
+    + CustomerId : int <<get>> <<set>>
+    + OrderDate : DateTime <<get>> <<set>>
+    + Status : OrderStatus <<get>> <<set>>
+    + TotalPrice : decimal <<get>> <<set>>
+    + ProductIds : List<ProductIdDTO> <<get>> <<set>>
+}
+class ProductIdDTO {
+    + ProductId : int <<get>> <<set>>
+    + Quantity : int <<get>> <<set>>
+}
+@enduml

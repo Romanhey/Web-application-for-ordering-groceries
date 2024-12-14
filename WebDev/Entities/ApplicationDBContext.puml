@@ -1,0 +1,12 @@
+@startuml
+class ApplicationDBContext {
+    + ApplicationDBContext(options:DbContextOptions<ApplicationDBContext>)
+    + Users : DbSet<User> <<get>> <<set>>
+    + Products : DbSet<Product> <<get>> <<set>>
+    + Orders : DbSet<Order> <<get>> <<set>>
+    + ProductCategories : DbSet<ProductCategory> <<get>> <<set>>
+    + OrderProducts : DbSet<OrderProduct> <<get>> <<set>>
+    # <<override>> OnModelCreating(modelBuilder:ModelBuilder) : void
+}
+DbContext <|-- ApplicationDBContext
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class OrderController {
+
+-  _orderService : OrderService <<readonly>>
++ <<async>> AddOrder(model:OrderDTO) : Task<IActionResult>
++ <<async>> GetOrder(id:int) : Task<IActionResult>
++ <<async>> UpdateOrder(id:int, model:OrderDTO) : Task<IActionResult>
++ <<async>> DeleteOrder(id:int) : Task<IActionResult>
++ <<async>> GetAllOrders() : Task<IActionResult>
++ <<async>> GerOrderByUserId(userId:int) : Task<IActionResult>
+}
+@enduml
