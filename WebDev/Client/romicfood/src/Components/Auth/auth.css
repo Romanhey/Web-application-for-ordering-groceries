@@ -1,5 +1,5 @@
 .auth_page{
-    width: 100%;
+    width: 100dvw;
     height: 100vh;
     position: fixed;
     left: -50%;
@@ -128,7 +128,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: max(calc(var(--index)*17) , 350px);
-    height: max(calc(var(--index)*15),380px);
     background-color: var(--white);
     border-radius: 20px;
     box-shadow: 0 32px 64px -12px #2d3643;
@@ -161,6 +160,8 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
+
 }
 
 
@@ -194,7 +195,7 @@
 }
 
 .register_Form.next #register_next {
-    opacity: 0;z-index: -1;
+    opacity: 0;z-index: -1;display: none;
 }
 .register_Form #register_next {
     opacity: 1;z-index: 2;
@@ -230,7 +231,7 @@
 }
 
 .register_form_inputs input:disabled{
-    width: 380px;
+    width: 100%;
     height: 56px;
     border: 1px solid transparent;
     background-color: #F2F5FF;
@@ -291,7 +292,6 @@
     }
     .register_Form {
         width: max(calc(var(--index)*17) , 350px);
-        height: max(calc(var(--index)*15),380px);
         border-radius: 20px;
         padding: 20px;
     }
@@ -302,6 +302,7 @@
 
     .register_form_buttons {
         width: 80%;
+
     }
 
 
@@ -325,7 +326,7 @@
     }
 
     .register_form_inputs input:disabled{
-        width: 380px;
+        width: 100%;
         height: 56px;
         border-radius: 50px;
         padding: 12px 12px 12px 16px;
@@ -380,5 +381,11 @@
 
     .login_form_buttons p a {
         font-size: 12px;
+    }
+
+    .register_Form {
+        width: 95%;
+        border-radius: 20px;
+        padding: 6px;
     }
 }
