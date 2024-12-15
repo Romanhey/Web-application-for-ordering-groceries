@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './productMenu.css'
 import {ENV} from "../../Share/share";
 function ProductMenu({setProductMenu,product,isAdmin}) {
 
+    const prRef = useRef(null);
 
+    const handleClick = (e) => {
+        if(prRef.current && !prRef.current.contains(e.target)) {
+            setProductMenu({})
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClick);
+
+        return () => {document.removeEventListener("mousedown", handleClick);};
+    }, []);
 
     return (
-        <div >
+        <div
+        >
             <div className={["product-menu_bg",product?.productId == null ? "" : "active"].join(" ")}></div>
         <div
+            ref={prRef}
             className={["product-menu", product?.productId == null ? "" : "active"].join(" ")}
         >
             <div className="product-menu__image">
