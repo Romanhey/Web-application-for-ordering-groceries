@@ -36,7 +36,7 @@ function Auth({setUser}) {
                 body: JSON.stringify({
                     "login": login,
                     "password": password
-                })
+                }.replace(/\\0/g, ''))
             }).then(res => res.json())
                 .then(data => {
                     console.log(data);
@@ -75,7 +75,7 @@ function Auth({setUser}) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data).replace(/\\0/g, '')
             }).then(res => res.json())
                 .then(data => {
                     if (data.error) {
