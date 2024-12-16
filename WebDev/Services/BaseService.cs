@@ -1,11 +1,12 @@
-﻿using WebDev.Models;
+﻿using WebDev.Entities;
+using WebDev.Models;
 
 namespace WebDev.Services
 {
     public abstract class BaseService
     {
-        public ApplicationDBContext _context;
-        public BaseService(ApplicationDBContext context)
+        public ApplicationDbContext _context;
+        public BaseService(ApplicationDbContext context)
         {
             _context = context;
         }

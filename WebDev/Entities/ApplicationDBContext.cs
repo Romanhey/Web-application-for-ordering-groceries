@@ -1,12 +1,11 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using WebDev.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using WebDev.Models;
 
-namespace WebDev.Models
+namespace WebDev.Entities
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }

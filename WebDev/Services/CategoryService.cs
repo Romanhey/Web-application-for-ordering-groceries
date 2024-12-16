@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebDev.DTO;
+using WebDev.Entities;
 using WebDev.Models;
 using WebDev.Services;
 
@@ -8,7 +9,7 @@ namespace WebDev.services
 {
     public class CategoryService:BaseService
     {
-        public CategoryService(ApplicationDBContext context):base(context){}
+        public CategoryService(ApplicationDbContext context):base(context){}
         public async Task AddCategory(CategoryDTO model)
         {
             // Проверка: описание категории не должно быть пустым или слишком длинным

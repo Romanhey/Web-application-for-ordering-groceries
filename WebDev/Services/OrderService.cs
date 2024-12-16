@@ -9,7 +9,7 @@ namespace WebDev.services
 {
     public class OrderService:BaseService
     {
-        public OrderService(ApplicationDBContext context):base(context){}
+        public OrderService(ApplicationDbContext context):base(context){}
 
 
         public async Task AddOrder(OrderDTO model)

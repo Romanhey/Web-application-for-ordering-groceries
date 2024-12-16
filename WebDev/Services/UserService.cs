@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using WebDev.DTO;
+using WebDev.Entities;
 using WebDev.Models;
 using WebDev.Services;
 
@@ -12,7 +13,7 @@ namespace WebDev.services
 {
     public class UserService:BaseService
     {
-        public UserService(ApplicationDBContext context):base(context) { }
+        public UserService(ApplicationDbContext context):base(context) { }
         public async Task<LoginResponse?> Login(LoginDTO model) 
         {
             var response = new LoginResponse();
