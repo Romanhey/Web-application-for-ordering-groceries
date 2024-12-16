@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WebDev.Entities;
-using WebDev.Models;
-using WebDev.services;
+using WebDev.BLL.Services;
+using WebDev.DAL.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +19,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ApplicationDbContext>(options => {
+builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<UserService>();
@@ -34,7 +33,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
 
     try
     {

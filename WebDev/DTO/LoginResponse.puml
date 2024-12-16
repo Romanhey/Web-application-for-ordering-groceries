@@ -1,6 +1,0 @@
-@startuml
-class LoginResponse {
-    + isLogged : bool <<get>> <<set>> = false
-    + user : User <<get>> <<set>>
-}
-@enduml

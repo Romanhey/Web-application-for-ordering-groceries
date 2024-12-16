@@ -1,9 +1,0 @@
-@startuml
-class UserUpdateDTO {
-    + FullName : string <<get>> <<set>>
-    + Email : string <<get>> <<set>>
-    + Address : string <<get>> <<set>>
-    + Login : string <<get>> <<set>>
-    + Password : string <<get>> <<set>>
-}
-@enduml
