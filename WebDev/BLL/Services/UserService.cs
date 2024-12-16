@@ -44,9 +44,21 @@ namespace WebDev.BLL.Services
                     System.Text.RegularExpressions.RegexOptions.IgnoreCase
                 );
         }
-
+        private bool ContainsNullByte(string str)
+        {
+            return str != null && str.Contains('\0');
+        }
+        private string SanitizeInput(string input)
+        {
+            // Убираем все управляющие символы
+            return string.Concat(input.Where(c => !char.IsControl(c)));
+        }
         public async Task Register(RegisterDTO model)
         {
+            if (ContainsNullByte(model.Login) || ContainsNullByte(model.Password) || ContainsNullByte(model.Address) || ContainsNullByte(model.FullName))
+            {
+                throw new ArgumentException("Input contains invalid characters (null byte).");
+            }
             if (!IsCorrectString(model.Login))
             {
                 throw new ArgumentException("Login is invalid. It must be non-empty and no longer than 50 characters.");
@@ -71,7 +83,7 @@ namespace WebDev.BLL.Services
             {
                 throw new ArgumentException("Invalid email format.");
             }
-
+            
             var user = await getUserFromDb(model.Login);
             if (user != null)
             {
@@ -80,13 +92,14 @@ namespace WebDev.BLL.Services
 
             var newUser = new User()
             {
-                Login = model.Login,
+                Login = SanitizeInput(model.Login),
                 Password = GetHash(model.Password),
-                Address = model.Address,
-                Email = model.Email,
-                FullName = model.FullName,
+                Address = SanitizeInput(model.Address), 
+                Email = SanitizeInput(model.Email),
+                FullName = SanitizeInput(model.FullName),
                 isAdmin = model.Login == "admin"
             };
+            Console.WriteLine($"Login: {newUser.Login}, Password: {newUser.Password}, Address: {newUser.Address}, FullName: {newUser.FullName}, Email: {newUser.Email}");
 
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
