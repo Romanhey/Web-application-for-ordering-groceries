@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./WebDev
+      dockerfile: Dockerfile  # Путь к Dockerfile для C# приложения
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=OrderingsystemDb;Username=romic;Password=Romic5002
+    ports:
+      - "8080:8080"  # Замените на нужный порт для вашего приложения
+  frontend:
+    build:
+      context: ./Client/romicfood
+      dockerfile: Dockerfile  # Путь к Dockerfile для React приложения
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"  # Замените на нужный порт для вашего фронтенда
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: romic
+      POSTGRES_PASSWORD: Romic5002
+      POSTGRES_DB: OrderingsystemDb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

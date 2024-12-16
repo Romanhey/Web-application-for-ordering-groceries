@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowClient", builder =>
-        builder.WithOrigins("http://frontend:3000","http://localhost:3000","http://frontend:80","http://localhost:80") // replace with actual frontend URL
+        builder.WithOrigins("https://web-application-for-ordering-groceries-70ve.onrender.com","http://frontend:3000","http://localhost:3000","http://frontend:80","http://localhost:80") // replace with actual frontend URL
             .AllowAnyMethod()
             .AllowAnyHeader()
     );
@@ -20,7 +20,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DeployConnection"));
+    //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<CategoryService>();
