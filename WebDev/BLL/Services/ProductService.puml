@@ -1,0 +1,15 @@
+@startuml
+class ProductService {
+    + ProductService(context:ApplicationDBContext)
+    + ValidateProductName(productName:string) : void
+    + ValidateCategory(category:ProductCategory) : void
+    + ValidatePrice(price:decimal) : void
+    + ValidateProductDescription(productDescription:string) : void
+    + <<async>> GetAllProducts() : Task<List<Product>>
+    + <<async>> GetProduct(id:int) : Task<Product>
+    + <<async>> DeleteProduct(id:int) : Task
+    + <<async>> UpdateProduct(id:int, updatedProduct:ProductDTO) : Task
+    + <<async>> AddProduct(newProduct:ProductDTO) : Task
+}
+BaseService <|-- ProductService
+@enduml

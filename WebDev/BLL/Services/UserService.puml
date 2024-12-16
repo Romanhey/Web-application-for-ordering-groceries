@@ -1,0 +1,14 @@
+@startuml
+class UserService {
+    + UserService(context:ApplicationDBContext)
+    + <<async>> Login(model:LoginDTO) : Task<LoginResponse?>
+    + IsCorrectString(str:string) : bool
+    - IsValidEmail(email:string) : bool
+    + <<async>> Register(model:RegisterDTO) : Task
+    + {static} GetHash(pass:string) : string
+    + <<async>> getUserFromDb(login:string) : Task<User>
+    + <<async>> DeleteUser(id:int) : Task
+    + <<async>> UpdateUser(id:int, model:UserUpdateDTO) : Task
+}
+BaseService <|-- UserService
+@enduml

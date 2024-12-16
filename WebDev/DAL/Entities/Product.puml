@@ -1,0 +1,13 @@
+@startuml
+class Product {
+    + ProductId : int <<get>> <<set>>
+    + ProductName : string <<get>> <<set>>
+    + Price : decimal <<get>> <<set>>
+    + ProductDescription : string <<get>> <<set>>
+    + CategoryId : int <<get>> <<set>>
+    + Category : ProductCategory <<get>> <<set>>
+    + ImageData : byte[] <<get>> <<set>>
+    + ImageSrc : string <<get>> <<set>>
+    + OrderProducts : ICollection<OrderProduct> <<get>> <<set>>
+}
+@enduml
