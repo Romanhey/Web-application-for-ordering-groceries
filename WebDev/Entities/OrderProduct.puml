@@ -1,9 +1,0 @@
-@startuml
-class OrderProduct {
-    + Id : int <<get>> <<set>>
-    + OrderId : int <<get>> <<set>>
-    + ProductId : int <<get>> <<set>>
-    + Quantity : int <<get>> <<set>>
-    + ProductName : string <<get>> <<set>>
-}
-@enduml

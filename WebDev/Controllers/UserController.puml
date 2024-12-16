@@ -1,9 +1,0 @@
-@startuml
-class UserController {
-    - _userService : UserService <<readonly>>
-    + Login(model:LoginDTO) : Task<IActionResult> <<async>>
-    + Register(model:RegisterDTO) : Task<IActionResult> <<async>>
-    + DeleteUser(id:int) : Task<IActionResult> <<async>>
-    + UpdateUser(id:int, model:UserUpdateDTO) : Task<IActionResult> <<async>>
-}
-@enduml

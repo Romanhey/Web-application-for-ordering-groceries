@@ -1,9 +1,0 @@
-@startuml
-class RegisterDTO {
-    + FullName : string <<get>> <<set>>
-    + Email : string <<get>> <<set>>
-    + Address : string <<get>> <<set>>
-    + Login : string <<get>> <<set>>
-    + Password : string <<get>> <<set>>
-}
-@enduml

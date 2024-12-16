@@ -1,9 +1,0 @@
-@startuml
-class ProductDTO {
-    + formFile : IFormFile <<get>> <<set>>
-    + ProductName : string <<get>> <<set>>
-    + Price : decimal <<get>> <<set>>
-    + ProductDescription : string <<get>> <<set>>
-    + CategoryId : int <<get>> <<set>>
-}
-@enduml
