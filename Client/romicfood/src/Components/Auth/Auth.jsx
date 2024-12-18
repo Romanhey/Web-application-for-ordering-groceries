@@ -82,6 +82,14 @@ function Auth({setUser}) {
                         alert(data.error);
                     } else {
                         alert("Успешно");
+                        setIsRegister(false);
+                        setIsSecondRegisterPage(false);
+                        setRegisterEmail("");
+                        setRegisterLogin("");
+                        setRegisterName("");
+                        setRegisterAddres("");
+                        setRegisterPassword("");
+                        setRegisterRepeatPassword("");
                     }
                 });
         } catch (e) {
