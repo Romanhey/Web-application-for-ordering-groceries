@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Npgsql;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -99,18 +100,41 @@ namespace WebDev.BLL.Services
                 FullName = SanitizeInput(model.FullName),
                 isAdmin = model.Login == "admin"
             };
-            Console.WriteLine($"Login: {newUser.Login}, Password: {newUser.Password}, Address: {newUser.Address}, FullName: {newUser.FullName}, Email: {newUser.Email}");
-
+            
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
+            /*try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is PostgresException pgEx)
+            {
+                Console.WriteLine($"PostgreSQL Error: {pgEx.SqlState}");
+                Console.WriteLine($"Message: {pgEx.MessageText}");
+                Console.WriteLine($"Detail: {pgEx.Detail}");
+                Console.WriteLine($"Where: {pgEx.Where}");
+                throw new Exception("Ошибка при сохранении данных в базу данных. Проверьте вводимые данные.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Логирование всех остальных исключений
+                Console.WriteLine($"Общая ошибка: {ex.Message}");
+                throw;
+            }*/
         }
-
-        public static string GetHash(string pass)
+        /*public static string GetHash(string pass)
         {
             var data = Encoding.ASCII.GetBytes(pass);
             data = SHA256.HashData(data);
 
+
             return Encoding.ASCII.GetString(data);
+        }*/
+        public static string GetHash(string pass)
+        {
+            var data = Encoding.UTF8.GetBytes(pass); // Используйте UTF-8 вместо ASCII
+            data = SHA256.HashData(data);
+            return Convert.ToBase64String(data); // Безопасное представление хэша
         }
 
         public async Task<User> getUserFromDb(string login)

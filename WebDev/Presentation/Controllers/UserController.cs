@@ -25,7 +25,7 @@ namespace WebDev.Presentation.Controllers
         {
             await _userService.Register(model);
 
-            return Ok();
+            return Ok(new {message = "Регистрация прошла успешно!" });
         }
 
         [HttpDelete("{id}")]
