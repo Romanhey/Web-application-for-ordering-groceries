@@ -122,20 +122,20 @@ namespace WebDev.BLL.Services
                 throw;
             }*/
         }
-        /*public static string GetHash(string pass)
+        public static string GetHash(string pass)
         {
-            var data = Encoding.ASCII.GetBytes(pass);
+            var data = Encoding.UTF8.GetBytes(pass);
             data = SHA256.HashData(data);
 
 
-            return Encoding.ASCII.GetString(data);
-        }*/
+            return Convert.ToBase64String(data);
+        }/*
         public static string GetHash(string pass)
         {
             var data = Encoding.UTF8.GetBytes(pass); // Используйте UTF-8 вместо ASCII
             data = SHA256.HashData(data);
             return Convert.ToBase64String(data); // Безопасное представление хэша
-        }
+        }*/
 
         public async Task<User> getUserFromDb(string login)
         {
